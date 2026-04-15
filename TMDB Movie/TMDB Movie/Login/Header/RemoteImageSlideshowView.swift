@@ -8,15 +8,7 @@
 import UIKit
 
 final class RemoteImageSlideshowView: UIView {
-
-    private let imageView: UIImageView = {
-        let iv = UIImageView()
-        iv.translatesAutoresizingMaskIntoConstraints = false
-        iv.contentMode = .scaleAspectFill
-        iv.clipsToBounds = true
-        return iv
-    }()
-
+    
     private var urls: [URL] = []
     private var index: Int = 0
 
@@ -25,6 +17,14 @@ final class RemoteImageSlideshowView: UIView {
 
     private var imageLoader: ImageLoaderProtocol?
     private var loadTask: Task<Void, Never>?
+
+    private let imageView: UIImageView = {
+        let iv = UIImageView()
+        iv.translatesAutoresizingMaskIntoConstraints = false
+        iv.contentMode = .scaleAspectFill
+        iv.clipsToBounds = true
+        return iv
+    }()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
