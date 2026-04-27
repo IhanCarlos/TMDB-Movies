@@ -16,6 +16,7 @@ final class HomeCarouselTableCell: UITableViewCell {
     private var items: [PosterItem] = []
     private var imageLoader: ImageLoaderProtocol?
     private var isLoading: Bool = false
+    private var heightConstraint: NSLayoutConstraint?
 
     private let container: UIView = {
         let v = UIView()
@@ -61,16 +62,14 @@ final class HomeCarouselTableCell: UITableViewCell {
         cv.dataSource = self
         cv.delegate = self
         cv.decelerationRate = .fast
-        cv.contentInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20) // ✅ padding Netflix
+        cv.contentInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
         cv.register(PosterItemCell.self, forCellWithReuseIdentifier: PosterItemCell.reuseIdentifier)
         return cv
     }()
 
-    private var heightConstraint: NSLayoutConstraint?
-
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        build()
+        setupView()
     }
 
     required init?(coder: NSCoder) { nil }
@@ -98,36 +97,62 @@ final class HomeCarouselTableCell: UITableViewCell {
             collectionView.reloadData()
         }
     }
+}
 
-    private func build() {
-        selectionStyle = .none
-        backgroundColor = .clear
-        contentView.backgroundColor = .clear
-
+extension HomeCarouselTableCell: ViewCodeType {
+    func buildViewHierarchy() {
         contentView.addSubview(container)
-
         container.addSubview(headerStack)
         headerStack.addArrangedSubview(titleLabel)
         headerStack.addArrangedSubview(subtitleLabel)
-
         container.addSubview(collectionView)
-
-        NSLayoutConstraint.activate([
-            container.topAnchor.constraint(equalTo: contentView.topAnchor),
-            container.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            container.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            container.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-
-            headerStack.topAnchor.constraint(equalTo: container.topAnchor, constant: 10),
-            headerStack.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: 20),   // ✅ padding
-            headerStack.trailingAnchor.constraint(lessThanOrEqualTo: container.trailingAnchor, constant: -20),
-
-            collectionView.topAnchor.constraint(equalTo: headerStack.bottomAnchor, constant: 12),
-            collectionView.leadingAnchor.constraint(equalTo: container.leadingAnchor),
-            collectionView.trailingAnchor.constraint(equalTo: container.trailingAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: container.bottomAnchor, constant: -8)
-        ])
-
+    }
+    
+    func setupConstraints() {
+        container.anchor(
+            top: contentView.topAnchor,
+            left: contentView.leftAnchor,
+            bottom: contentView.bottomAnchor,
+            right: contentView.rightAnchor
+        )
+        
+        headerStack.anchor(
+            top: container.topAnchor,
+            left: container.leftAnchor,
+            right: container.rightAnchor,
+            topConstant: 10,
+            leftConstant: 20,
+            rightConstant: 20,
+            heightConstant: 50
+        )
+        
+        titleLabel.anchor(
+            top: headerStack.topAnchor,
+            left: headerStack.leftAnchor,
+        )
+        
+        subtitleLabel.anchor(
+            top: titleLabel.bottomAnchor,
+            left: headerStack.leftAnchor,
+            bottom: headerStack.bottomAnchor,
+            topConstant: 4
+        )
+        
+        collectionView.anchor(
+            top: headerStack.bottomAnchor,
+            left: container.leftAnchor,
+            bottom: container.bottomAnchor,
+            right: container.rightAnchor,
+            topConstant: 12,
+            bottomConstant: 8
+        )
+    }
+    
+    func setupAdditionalConfiguration() {
+        selectionStyle = .none
+        backgroundColor = .clear
+        contentView.backgroundColor = .clear
+        
         heightConstraint = collectionView.heightAnchor.constraint(equalToConstant: 180)
         heightConstraint?.isActive = true
     }
@@ -136,7 +161,6 @@ final class HomeCarouselTableCell: UITableViewCell {
 extension HomeCarouselTableCell: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // ✅ skeleton: mostra 10 placeholders quando está carregando
         return isLoading ? 10 : items.count
     }
 
@@ -168,6 +192,6 @@ extension HomeCarouselTableCell: UICollectionViewDataSource, UICollectionViewDel
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 120, height: 180)
+        return CGSize(width: 120, height: 200)
     }
 }

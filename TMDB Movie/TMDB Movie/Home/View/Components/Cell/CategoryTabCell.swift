@@ -25,7 +25,7 @@ final class CategoryTabCell: UICollectionViewCell {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setup()
+        setupView()
     }
 
     required init?(coder: NSCoder) { nil }
@@ -40,23 +40,6 @@ final class CategoryTabCell: UICollectionViewCell {
         updateStyle()
     }
 
-    private func setup() {
-        
-        contentView.layer.cornerRadius = 18
-        contentView.clipsToBounds = true
-
-        contentView.addSubview(titleLabel)
-
-        NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
-            titleLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8),
-            titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16)
-        ])
-
-        updateStyle()
-    }
-
     private func updateStyle() {
         if isSelected {
             contentView.backgroundColor = .ds(.pink)
@@ -65,5 +48,30 @@ final class CategoryTabCell: UICollectionViewCell {
             contentView.backgroundColor = UIColor.white.withAlphaComponent(0.08)
             titleLabel.textColor = UIColor.ds(.grayligth).withAlphaComponent(0.8)
         }
+    }
+}
+
+extension CategoryTabCell: ViewCodeType {
+    func buildViewHierarchy() {
+        contentView.addSubview(titleLabel)
+    }
+    
+    func setupConstraints() {
+        titleLabel.anchor(
+            top: contentView.topAnchor,
+            left: contentView.leftAnchor,
+            bottom: contentView.bottomAnchor,
+            right: contentView.rightAnchor,
+            topConstant: 8,
+            leftConstant: 12,
+            bottomConstant: 8,
+            rightConstant: 12
+        )
+    }
+    
+    func setupAdditionalConfiguration() {
+        contentView.layer.cornerRadius = 18
+        contentView.clipsToBounds = true
+        updateStyle()
     }
 }

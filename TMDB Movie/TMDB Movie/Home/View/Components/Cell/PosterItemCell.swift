@@ -16,11 +16,12 @@ final class PosterItemCell: UICollectionViewCell {
     private let cardView: UIView = {
         let v = UIView()
         v.translatesAutoresizingMaskIntoConstraints = false
-        v.layer.cornerRadius = 18
         v.layer.shadowColor = UIColor.black.cgColor
         v.layer.shadowOpacity = 0.35
         v.layer.shadowRadius = 10
         v.layer.shadowOffset = CGSize(width: 0, height: 6)
+        v.layer.cornerRadius = 18
+        v.clipsToBounds = true
         return v
     }()
 
@@ -100,6 +101,7 @@ final class PosterItemCell: UICollectionViewCell {
             guard let image = try? await imageLoader.load(url) else { return }
             await MainActor.run {
                 self.imageView.image = image
+                self.imageView.layer.cornerRadius = 18
                 self.shimmer.stop()
                 self.shimmer.isHidden = true
             }

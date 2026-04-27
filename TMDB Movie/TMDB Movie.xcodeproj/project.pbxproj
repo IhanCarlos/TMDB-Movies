@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1EAB8B3D2F9130F400E12647 /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EAB8B3C2F9130EF00E12647 /* LoginModel.swift */; };
 		1ED3B7FC2F9044650057FFAF /* LoginHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED3B7FB2F90445B0057FFAF /* LoginHeaderView.swift */; };
-		1ED3B8732F90518E0057FFAF /* BaseCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED3B8722F90517D0057FFAF /* BaseCoordinator.swift */; };
 		D9DF1AD52F04417D006E12CD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DF1AD42F04417D006E12CD /* AppDelegate.swift */; };
 		D9DF1AD72F04417D006E12CD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DF1AD62F04417D006E12CD /* SceneDelegate.swift */; };
 		D9DF1ADE2F044180006E12CD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D9DF1ADD2F044180006E12CD /* Assets.xcassets */; };
@@ -77,8 +77,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1EAB8B3C2F9130EF00E12647 /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
 		1ED3B7FB2F90445B0057FFAF /* LoginHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginHeaderView.swift; sourceTree = "<group>"; };
-		1ED3B8722F90517D0057FFAF /* BaseCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCoordinator.swift; sourceTree = "<group>"; };
 		1EDC8B3F2F902E7C007C51EB /* TMDB MovieTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "TMDB MovieTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9DF1AD12F04417C006E12CD /* TMDB Movie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TMDB Movie.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9DF1AD42F04417D006E12CD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -165,11 +165,95 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1EAB8B3B2F9130C600E12647 /* Model  */ = {
+			isa = PBXGroup;
+			children = (
+				1EAB8B3C2F9130EF00E12647 /* LoginModel.swift */,
+			);
+			path = "Model ";
+			sourceTree = "<group>";
+		};
+		1EAB8B3E2F913AEE00E12647 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				D9DF1B0C2F047F50006E12CD /* HomeViewController.swift */,
+				1EAB8B402F913B0500E12647 /* Components */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		1EAB8B3F2F913AF500E12647 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				D9DF1B372F103B20006E12CD /* HomeViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		1EAB8B402F913B0500E12647 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				D9DF1B7A2F161AC2006E12CD /* ShimmerView.swift */,
+				D9DF1B762F160641006E12CD /* HomeHeaderView.swift */,
+				D9DF1B112F101D07006E12CD /* Cell */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		1EAB8B412F913B2100E12647 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D9DF1B742F1605F0006E12CD /* HomeSection.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		1EAB8B422F913B3800E12647 /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				D9DF1B512F1154AB006E12CD /* HomeCoordinator.swift */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		1ED0E67C2F912F88001BC724 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				D9DF1AFB2F045B97006E12CD /* LoginViewController.swift */,
+				1ED0E67F2F912FC7001BC724 /* Components */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		1ED0E67D2F912F92001BC724 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				D9DF1B6E2F118400006E12CD /* LoginViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		1ED0E67E2F912F98001BC724 /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				D9DF1B552F1156E6006E12CD /* LoginCoordinator.swift */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		1ED0E67F2F912FC7001BC724 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				D9DF1B712F11842E006E12CD /* RemoteImageSlideshowView.swift */,
+				1ED3B7FB2F90445B0057FFAF /* LoginHeaderView.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 		D9DF1AC82F04417C006E12CD = {
 			isa = PBXGroup;
 			children = (
 				D9DF1AE92F0441BA006E12CD /* TMDB Movie */,
-				1EDC8B402F902E7D007C51EB /* TMDB MovieTests */,
 				D9DF1AD22F04417C006E12CD /* Products */,
 			);
 			sourceTree = "<group>";
@@ -202,6 +286,7 @@
 				D9DF1AE22F044180006E12CD /* Info.plist */,
 				D9DF1ADF2F044180006E12CD /* LaunchScreen.storyboard */,
 				D9DF1AD62F04417D006E12CD /* SceneDelegate.swift */,
+				1EDC8B402F902E7D007C51EB /* TMDB MovieTests */,
 			);
 			path = "TMDB Movie";
 			sourceTree = "<group>";
@@ -209,7 +294,6 @@
 		D9DF1AEA2F044218006E12CD /* Commons */ = {
 			isa = PBXGroup;
 			children = (
-				1ED3B8722F90517D0057FFAF /* BaseCoordinator.swift */,
 				D9DF1B392F103BA2006E12CD /* ImageLoader.swift */,
 				D9DF1AF82F044DBC006E12CD /* UIColor+Extension.swift */,
 				D9DF1AEB2F044233006E12CD /* ViewCodeType.swift */,
@@ -253,10 +337,10 @@
 		D9DF1AFA2F045B78006E12CD /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				D9DF1B702F118425006E12CD /* Header */,
-				D9DF1B6E2F118400006E12CD /* LoginViewModel.swift */,
-				D9DF1B552F1156E6006E12CD /* LoginCoordinator.swift */,
-				D9DF1AFB2F045B97006E12CD /* LoginViewController.swift */,
+				1ED0E67E2F912F98001BC724 /* Coordinator */,
+				1ED0E67C2F912F88001BC724 /* View */,
+				1ED0E67D2F912F92001BC724 /* ViewModel */,
+				1EAB8B3B2F9130C600E12647 /* Model  */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -281,11 +365,10 @@
 		D9DF1B0B2F047F41006E12CD /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				D9DF1B732F1605E2006E12CD /* Header */,
-				D9DF1B512F1154AB006E12CD /* HomeCoordinator.swift */,
-				D9DF1B372F103B20006E12CD /* HomeViewModel.swift */,
-				D9DF1B0C2F047F50006E12CD /* HomeViewController.swift */,
-				D9DF1B112F101D07006E12CD /* Cell */,
+				1EAB8B422F913B3800E12647 /* Coordinator */,
+				1EAB8B412F913B2100E12647 /* Model */,
+				1EAB8B3F2F913AF500E12647 /* ViewModel */,
+				1EAB8B3E2F913AEE00E12647 /* View */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -387,25 +470,6 @@
 				D9DF1B5C2F117177006E12CD /* CastItemCell.swift */,
 			);
 			path = Cell;
-			sourceTree = "<group>";
-		};
-		D9DF1B702F118425006E12CD /* Header */ = {
-			isa = PBXGroup;
-			children = (
-				1ED3B7FB2F90445B0057FFAF /* LoginHeaderView.swift */,
-				D9DF1B712F11842E006E12CD /* RemoteImageSlideshowView.swift */,
-			);
-			path = Header;
-			sourceTree = "<group>";
-		};
-		D9DF1B732F1605E2006E12CD /* Header */ = {
-			isa = PBXGroup;
-			children = (
-				D9DF1B7A2F161AC2006E12CD /* ShimmerView.swift */,
-				D9DF1B762F160641006E12CD /* HomeHeaderView.swift */,
-				D9DF1B742F1605F0006E12CD /* HomeSection.swift */,
-			);
-			path = Header;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -552,6 +616,7 @@
 				D9DF1B5A2F117158006E12CD /* CastSectionView.swift in Sources */,
 				D9DF1B2D2F10281F006E12CD /* APIClient.swift in Sources */,
 				D9DF1B182F102021006E12CD /* PosterItem.swift in Sources */,
+				1EAB8B3D2F9130F400E12647 /* LoginModel.swift in Sources */,
 				D9DF1B502F11547B006E12CD /* Coordinator.swift in Sources */,
 				D9DF1AF42F04432E006E12CD /* DSColors.swift in Sources */,
 				D9DF1B6F2F118407006E12CD /* LoginViewModel.swift in Sources */,
@@ -567,7 +632,6 @@
 				D9DF1AFF2F046019006E12CD /* DSGradientView.swift in Sources */,
 				D9DF1B102F0EF59A006E12CD /* SearchBarView.swift in Sources */,
 				D9DF1AD72F04417D006E12CD /* SceneDelegate.swift in Sources */,
-				1ED3B8732F90518E0057FFAF /* BaseCoordinator.swift in Sources */,
 				D9DF1B362F103AE9006E12CD /* TMDBService.swift in Sources */,
 				D9DF1B382F103B21006E12CD /* HomeViewModel.swift in Sources */,
 				D9DF1B542F1156CD006E12CD /* AppCoordinator.swift in Sources */,

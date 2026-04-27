@@ -41,7 +41,7 @@ final class HomeHeaderView: UIView {
         return iv
     }()
 
-    private let searchBarView = SearchBarView()
+    private let searchBarView = DSSearchBar()
 
     private func makeGenreLayout() -> UICollectionViewLayout {
         let layout = UICollectionViewFlowLayout()
@@ -67,8 +67,7 @@ final class HomeHeaderView: UIView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        build()
-        bindSearch()
+        setupView()
     }
 
     required init?(coder: NSCoder) { nil }
@@ -86,40 +85,6 @@ final class HomeHeaderView: UIView {
 
     func setSearchText(_ text: String) {
         searchBarView.setText(text)
-    }
-
-    private func build() {
-        translatesAutoresizingMaskIntoConstraints = false
-
-        addSubview(titleLabel)
-        addSubview(profileImageView)
-        addSubview(searchBarView)
-        addSubview(genreCollectionView)
-
-        NSLayoutConstraint.activate([
-            profileImageView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 18),
-            profileImageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
-            profileImageView.widthAnchor.constraint(equalToConstant: 40),
-            profileImageView.heightAnchor.constraint(equalToConstant: 40),
-
-            titleLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 14),
-            titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
-            titleLabel.trailingAnchor.constraint(equalTo: profileImageView.leadingAnchor, constant: -16),
-
-            searchBarView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 16),
-            searchBarView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
-            searchBarView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -40),
-            searchBarView.heightAnchor.constraint(equalToConstant: 48),
-
-            genreCollectionView.topAnchor.constraint(equalTo: searchBarView.bottomAnchor, constant: 16),
-            genreCollectionView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
-            genreCollectionView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
-            genreCollectionView.heightAnchor.constraint(equalToConstant: 44),
-
-            genreCollectionView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10)
-        ])
-
-        searchBarView.configure(.init(placeholder: "Buscar", text: nil, isSearchEnabled: true))
     }
 
     private func bindSearch() {
@@ -151,5 +116,68 @@ extension HomeHeaderView: UICollectionViewDataSource, UICollectionViewDelegate {
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         onSelectGenreIndex?(indexPath.item)
+    }
+}
+
+extension HomeHeaderView: ViewCodeType {
+    func buildViewHierarchy() {
+        addSubview(profileImageView)
+        addSubview(titleLabel)
+        addSubview(searchBarView)
+        addSubview(genreCollectionView)
+    }
+    
+    func setupConstraints() {
+        profileImageView.anchor(
+            top: safeAreaLayoutGuide.topAnchor,
+            right: rightAnchor,
+            topConstant: 18,
+            rightConstant: 20,
+            widthConstant: 40,
+            heightConstant: 40
+        )
+        
+        titleLabel.anchor(
+            top: safeAreaLayoutGuide.topAnchor,
+            left: leftAnchor,
+            right: profileImageView.leftAnchor,
+            topConstant: 14,
+            leftConstant: 20,
+            rightConstant: 20
+        )
+        
+        searchBarView.anchor(
+            top: titleLabel.bottomAnchor,
+            left: leftAnchor,
+            right: rightAnchor,
+            topConstant: 10,
+            leftConstant: 20,
+            rightConstant: 20,
+            heightConstant: 48
+        )
+        
+        genreCollectionView.anchor(
+            top: searchBarView.bottomAnchor,
+            left: leftAnchor,
+            bottom: bottomAnchor,
+            right: rightAnchor,
+            topConstant: 16,
+            leftConstant: 20
+        )
+    }
+    
+    func setupAdditionalConfiguration() {
+        bindSearch()
+        searchBarView.configure(
+            DSSearchBarViewData(
+                placeholder: "Buscar",
+                text: nil,
+                isEnabled: true
+            )
+        )
+
+        searchBarView.onSearch = { query in
+            print("Buscar:", query)
+        }
     }
 }

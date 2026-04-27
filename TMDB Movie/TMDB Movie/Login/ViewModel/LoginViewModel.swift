@@ -10,13 +10,6 @@ import Foundation
 @MainActor
 final class LoginViewModel {
 
-    enum State: Equatable {
-        case idle
-        case loading
-        case loaded
-        case error(String)
-    }
-
     var onStateChange: ((State) -> Void)?
     var onBackgroundURLsChange: (([URL]) -> Void)?
 
